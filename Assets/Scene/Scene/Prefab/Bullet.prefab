@@ -49,6 +49,22 @@ MonoBehaviour:
   _rb: {fileID: 7551320715217455284}
   _speed: 0.3
   _collisionCooldown: 0.1
+  _impactEffect: {fileID: 4737344363633657437, guid: c5e3f3fe5a835d344b3b2451ab63e0fa, type: 3}
+  _onTouch:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6056709005347279180}
+        m_TargetAssemblyTypeName: Bullet, MyGame
+        m_MethodName: SetImpactEffect
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!61 &721766070828420108
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -62,7 +78,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0017084777, y: -0.0017084628}
+  m_Offset: {x: -0.08, y: -0.06}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -73,7 +89,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.13551134, y: 0.13551125}
+  m_Size: {x: 0.19, y: 0.19}
   m_EdgeRadius: 0
 --- !u!50 &7551320715217455284
 Rigidbody2D:

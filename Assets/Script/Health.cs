@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Health : MonoBehaviour, IHealth
+public class Health : MonoBehaviour, IHealth, IShieldable
 {
     // Champs
     [SerializeField] int _startHealth;
@@ -17,9 +17,13 @@ public class Health : MonoBehaviour, IHealth
     public int MaxHealth => _maxHealth;
     public bool IsDead => CurrentHealth <= 0;
 
+    bool _isShielding = false;
+    public bool IsShielding => _isShielding;
+
     // Events
     public event UnityAction OnSpawn;
     public event UnityAction<int> OnDamage;
+    public event UnityAction<int> OnHeal;
     public event UnityAction OnDeath { add => _onDeath.AddListener(value); remove => _onDeath.RemoveListener(value); }
 
     // Methods
@@ -35,6 +39,8 @@ public class Health : MonoBehaviour, IHealth
     {
         if (amount < 0) throw new ArgumentException($"Argument amount {nameof(amount)} is negativ");
 
+        if (_isShielding) return;
+
         var tmp = CurrentHealth;
         CurrentHealth = Mathf.Max(0, CurrentHealth - amount);
         var delta = CurrentHealth - tmp;
@@ -44,9 +50,22 @@ public class Health : MonoBehaviour, IHealth
         {
             _onDeath?.Invoke();
         }
-
     }
 
+    public void Heal(int amount)
+    {
+        if (amount < 0) throw new ArgumentException($"Argument amount {nameof(amount)} is negativ");
+
+        var tmp = CurrentHealth;
+        CurrentHealth = Mathf.Min(MaxHealth, CurrentHealth + amount);
+        var delta = tmp - CurrentHealth;
+        OnHeal?.Invoke(delta);
+    }
+
+    public void SetIsShielding(bool _isShielding) => this._isShielding = _isShielding;
+
+
+    /*
     [Button("test")]
     void MaFonction()
     {
@@ -86,7 +105,7 @@ public class Health : MonoBehaviour, IHealth
         yield break;
     }
 
-
+    */
 
 
 

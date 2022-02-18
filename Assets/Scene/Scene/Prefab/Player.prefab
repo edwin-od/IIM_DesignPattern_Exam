@@ -118,11 +118,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _mainCamera: {fileID: 0}
+  _player: {fileID: 0}
   _movement: {fileID: 4880755393553903839}
   _fire: {fileID: 4282943184299706631}
   _pointerPosition: {fileID: -783169567023109517, guid: edb876c493db3cc41bcfd505340de7ef, type: 3}
   _moveJoystick: {fileID: 1202087846194337127, guid: edb876c493db3cc41bcfd505340de7ef, type: 3}
   _fireButton: {fileID: 1288914843486402132, guid: edb876c493db3cc41bcfd505340de7ef, type: 3}
+  _shieldButton: {fileID: 0}
 --- !u!1 &2718515491814373226
 GameObject:
   m_ObjectHideFlags: 0
@@ -370,6 +372,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8718385489110254335}
   - component: {fileID: 3916804375536699047}
+  - component: {fileID: 7798734652195936760}
+  - component: {fileID: 192397126812560492}
   m_Layer: 0
   m_Name: ObjectTrigger
   m_TagString: Untagged
@@ -417,6 +421,49 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9410648, y: 2.2955625}
   m_EdgeRadius: 0
+--- !u!114 &7798734652195936760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656551847328665815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2524a10b65fc05645b384c7721d79e30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _colliders:
+  - {fileID: 3916804375536699047}
+  _onTriggerEnter2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerStay2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _onTriggerExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionEnter2D:
+    m_PersistentCalls:
+      m_Calls: []
+  _onCollisionExit2D:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &192397126812560492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4656551847328665815}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 191caf196f1e02d4bbe264fe93aba608, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 11400000, guid: 7d3f6df302821bc4291c74c1e016a367, type: 2}
+  _trigger: {fileID: 7798734652195936760}
 --- !u!1 &4719610752975132196
 GameObject:
   m_ObjectHideFlags: 0
@@ -543,7 +590,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4871718906434305891}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.4, y: 0, z: 0}
+  m_LocalPosition: {x: -0.09, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 861335295193096352}
@@ -642,6 +689,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 7257506456246402187}
   _bulletPrefab: {fileID: 6056709005347279180, guid: 01834f7a3e0c2fb448d9d118fcdbd49c, type: 3}
+  _bulletPool: {fileID: 0}
 --- !u!114 &2103652747003793891
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,6 +841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1657962468365373699}
+  _shakeReference: {fileID: 11400000, guid: 4c993ce3cf0473c409cb66dc57c04fc9, type: 2}
 --- !u!114 &7570379441199668059
 MonoBehaviour:
   m_ObjectHideFlags: 0

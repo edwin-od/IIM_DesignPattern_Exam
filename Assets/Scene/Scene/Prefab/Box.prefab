@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1267897571762198585}
-  - component: {fileID: 6174975102065738891}
+  - component: {fileID: 352820428593237067}
   m_Layer: 0
   m_Name: HitBox
   m_TagString: Untagged
@@ -113,7 +113,7 @@ Transform:
   m_Father: {fileID: 8381437476024049867}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &6174975102065738891
+--- !u!65 &352820428593237067
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -135,8 +135,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8381437476024049867}
-  - component: {fileID: 8381437476024049864}
-  - component: {fileID: 3562105877424766730}
+  - component: {fileID: 3889390982258891577}
+  - component: {fileID: 8290239900982210400}
   m_Layer: 0
   m_Name: Box
   m_TagString: Untagged
@@ -160,7 +160,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8381437476024049864
+--- !u!114 &3889390982258891577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -172,7 +172,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1877c82ee7293904fbdc533c958b3762, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!61 &3562105877424766730
+  _potionDrops:
+  - {fileID: 2020722040363732734, guid: 5be6894f9a85da34f97c52ca556e93b9, type: 3}
+  _dropProbability: 0.33
+  _onTouched:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!61 &8290239900982210400
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -46,6 +46,7 @@ MonoBehaviour:
   _fire: {fileID: 4645590585023127803}
   _playerTarget: {fileID: 0}
   _detectionRadius: 7
+  _drawGizmo: 0
 --- !u!1 &1855186171643597931
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,6 +378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 5699784363214921206}
   _bulletPrefab: {fileID: 6056709005347279180, guid: 01834f7a3e0c2fb448d9d118fcdbd49c, type: 3}
+  _bulletPool: {fileID: 11400000, guid: 0fec54c5a7980bb438dc0034562ab38e, type: 2}
 --- !u!61 &9182086342212961279
 BoxCollider2D:
   m_ObjectHideFlags: 0

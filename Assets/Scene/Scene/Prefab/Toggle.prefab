@@ -28,7 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
-  m_Father: {fileID: 772237969755308590}
+  m_Father: {fileID: 3650567345649794386}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &772237969555204843
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Color: {r: 0.2699656, g: 0.33309543, b: 0.6132076, a: 1}
   m_FlipX: 0
@@ -90,7 +90,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 772237969755308590}
+  - component: {fileID: 3650567345649794386}
   - component: {fileID: 772237969755308591}
   - component: {fileID: 772237969755308588}
   m_Layer: 0
@@ -100,8 +100,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &772237969755308590
-Transform:
+--- !u!224 &3650567345649794386
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -115,6 +115,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!61 &772237969755308591
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -153,9 +158,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60ed3439ca4dc2748a9934d53a24649a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _onColor: {r: 0, g: 1, b: 0, a: 1}
+  _offColor: {r: 1, g: 0, b: 0, a: 1}
+  _spriteRenderer: {fileID: 772237969555204843}
+  _onToggleChange:
+    m_PersistentCalls:
+      m_Calls: []
   _onToggleOn:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772237969755308588}
+        m_TargetAssemblyTypeName: Toggle, MyGame
+        m_MethodName: SetOnColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _onToggleOff:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 772237969755308588}
+        m_TargetAssemblyTypeName: Toggle, MyGame
+        m_MethodName: SetOffColor
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

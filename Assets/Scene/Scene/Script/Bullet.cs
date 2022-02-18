@@ -9,17 +9,25 @@ public class Bullet : MonoBehaviour
     [SerializeField] Rigidbody2D _rb;
     [SerializeField] float _speed;
     [SerializeField] float _collisionCooldown = 0.5f;
+    [SerializeField] ParticleSystem _impactEffect;
+
+    [SerializeField] UnityEvent _onTouch;
+
+    BulletPool _bulletPool;
+    public void SetBulletPool(BulletPool _pool) => _bulletPool = _pool;
 
     public Vector3 Direction { get; private set; }
     public int Power { get; private set; }
     float LaunchTime { get; set; }
 
-    internal Bullet Init(Vector3 vector3, int power)
+    internal void Init(BulletPool _pool) => _bulletPool = _pool;
+
+    internal void ResetBullet(Vector3 pos, Vector3 vector3, int power)
     {
+        transform.position = pos;
         Direction = vector3;
         Power = power;
         LaunchTime = Time.fixedTime;
-        return this;
     }
 
     void FixedUpdate()
@@ -36,19 +44,30 @@ public class Bullet : MonoBehaviour
     {
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
 
-        collision.GetComponent<IHealth>()?.TakeDamage(Power);
-        Destroy(gameObject);
+        if (collision.TryGetComponent<IHealth>(out var health)) { health.TakeDamage(Power); }
+        else if (collision.TryGetComponent<ITouchable>(out var touchable)) { touchable.Touch(Power); }
+        else { return; }
+
+        _onTouch?.Invoke();
+
+        _bulletPool.DeactivateBullet(this);
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (Time.fixedTime < LaunchTime + _collisionCooldown) return;
 
-        collision.collider.GetComponent<IHealth>()?.TakeDamage(Power);
-        Destroy(gameObject);
+        if (collision.collider.TryGetComponent<IHealth>(out var health)) { health.TakeDamage(Power); }
+        else if (collision.collider.TryGetComponent<ITouchable>(out var touchable)) { touchable.Touch(Power); }
+        else { return; }
+
+        _onTouch?.Invoke();
+
+        _bulletPool.DeactivateBullet(this);
     }
 
-    private void Health_OnDamage(int arg0)
+    public void SetImpactEffect()
     {
-        throw new NotImplementedException();
+        ParticleSystem _ = Instantiate(_impactEffect, transform.position, Quaternion.identity);
+        _.transform.parent = null;
     }
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class HealthProxy : MonoBehaviour, IHealth
+public class HealthProxy : MonoBehaviour, IHealth, IShieldable
 {
     [SerializeField] Health _health;
 
@@ -14,10 +14,17 @@ public class HealthProxy : MonoBehaviour, IHealth
 
     public bool IsDead => _health.IsDead;
 
+    public bool IsShielding => _health.IsShielding;
+
     public event UnityAction OnSpawn
     {
         add => _health.OnSpawn += value;
         remove => _health.OnSpawn -= value;
+    }
+    public event UnityAction<int> OnHeal
+    {
+        add => _health.OnHeal += value;
+        remove => _health.OnHeal -= value;
     }
     public event UnityAction<int> OnDamage
     {
@@ -30,7 +37,10 @@ public class HealthProxy : MonoBehaviour, IHealth
         remove => _health.OnDeath -= value;
     }
 
+    public void SetIsShielding(bool _isShielding) => _health.SetIsShielding(_isShielding);
+
     public void TakeDamage(int amount) => _health.TakeDamage(amount);
+    public void Heal(int amount) => _health.Heal(amount);
 
     
 
